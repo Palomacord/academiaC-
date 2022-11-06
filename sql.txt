@@ -1,0 +1,48 @@
+CREATE TABLE `alunos` (
+  `AlunoId` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `Idade` int DEFAULT NULL,
+  `Peso` double DEFAULT NULL,
+  PRIMARY KEY (`AlunoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin.
+
+CREATE TABLE `aparelhos` (
+  `AparelhosId` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `link` varchar(455) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`AparelhosId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin
+
+CREATE TABLE `aulas_aluno` (
+  `AulaId` int NOT NULL AUTO_INCREMENT,
+  `AlunoId` int DEFAULT NULL,
+  `TreinoId` int DEFAULT NULL,
+  `Data_aula` datetime DEFAULT NULL,
+  `Frequencia` tinyint DEFAULT NULL,
+  PRIMARY KEY (`AulaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin
+
+CREATE TABLE `treinoexercicio` (
+  `TreinoExercicioId` int NOT NULL AUTO_INCREMENT,
+  `TreinoId` int DEFAULT NULL,
+  `ExercicioId` int DEFAULT NULL,
+  `TempoMax` double DEFAULT NULL,
+  PRIMARY KEY (`TreinoExercicioId`),
+  KEY `fk_treino_ex_idx` (`TreinoId`),
+  KEY `fk_exercicio_ex_idx` (`ExercicioId`),
+  CONSTRAINT `fk_exercicio_ex` FOREIGN KEY (`ExercicioId`) REFERENCES `exercicios` (`ExercicioId`),
+  CONSTRAINT `fk_treino_ex` FOREIGN KEY (`TreinoId`) REFERENCES `treinos` (`TreinoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin
+
+CREATE TABLE `treinoexercicio` (
+  `TreinoExercicioId` int NOT NULL AUTO_INCREMENT,
+  `TreinoId` int DEFAULT NULL,
+  `ExercicioId` int DEFAULT NULL,
+  `TempoMax` double DEFAULT NULL,
+  PRIMARY KEY (`TreinoExercicioId`),
+  KEY `fk_treino_ex_idx` (`TreinoId`),
+  KEY `fk_exercicio_ex_idx` (`ExercicioId`),
+  CONSTRAINT `fk_exercicio_ex` FOREIGN KEY (`ExercicioId`) REFERENCES `exercicios` (`ExercicioId`),
+  CONSTRAINT `fk_treino_ex` FOREIGN KEY (`TreinoId`) REFERENCES `treinos` (`TreinoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin
+
